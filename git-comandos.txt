@@ -62,6 +62,7 @@ git add *.txt
 
 # COMMITEA los archivos y agrega un mensaje relacionado con el commit
 git commit -m "Mensaje que sea descriptivo"
+git commit -m "Primer commit"
 # Abre el editor por defecto para agregar el mensaje relacionado con el commit
 git commit
 
