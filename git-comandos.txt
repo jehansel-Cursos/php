@@ -1,0 +1,142 @@
+HolaMundo (Nicholas Schurmann)
+https://youtu.be/VdGzPZ31ts8
+
+# Documentación de GIT
+https://git-scm.com/doc
+
+# Versión de git
+git --version
+# ==================================================================
+# CONFIGURACIÓN DE GIT
+
+# Configuración inicial de git global (para todos los proyectos)
+git config --global user.name "Juan Roldan"
+git config --global user.email juan.roldan.zamudio@gmail.com
+
+# Configuración del editor de texto (VS Code)
+# Indicar a git que VS Code es nuestro editor de texto por defecto
+git config --global core.editor "code --wait"
+
+# Ver el contenido del archivo de configuración global
+git config --global -e
+
+# CR = carriage return
+# LF = line feed
+# Windows
+git config --global core.autocrlf true
+# Linux y MAC
+git config --global core.autocrlf input
+
+# Ayuda de config
+git config -h
+# ==================================================================
+# COMANDOS DE GIT
+
+# Inicializar un repositorio local vacio en git
+# Dentro de la ruta donde van a estar los archivos (ejemplo d:/workspace/proyecto/)
+# Va a crear el directorio oculto ".git" y dentro de ese directorio se encuentran los archivos de git
+# que se utilizan para gestionar el proyecto (detalle de implementación)
+# Para acceder a ese directorio oculto se hace con "cd .git"
+git init
+
+# ¿Cómo eliminar un repositorio de Git creado con ‘git init’ en un directorio?
+cd carpeta/
+rm -rf .git
+
+# Proceso de control de versiones de git
+# Computador -> (add) Stage -> (commit) Commit -> (push) Server (SOLO PARA GITHUB)
+
+# Abrir VS Code, el punto significa EN LA CARPETA QUE ESTOY AHORA MISMO
+code .
+
+# Muestra el estatus actual del repositorio
+git status
+
+# Agrega al STAGE el o los archivos
+# 1 archivo
+git add archivo1.txt
+# 2 archivos
+git add archivo1.txt archivo2.txt
+# Todos los archivos txt
+git add *.txt
+
+# COMMITEA los archivos y agrega un mensaje relacionado con el commit
+git commit -m "Mensaje que sea descriptivo"
+# Abre el editor por defecto para agregar el mensaje relacionado con el commit
+git commit
+
+# Borra el archio y después lo pasa a STAGE
+rm archivo1.txt
+git add archivo1.txt
+# Borra el archivo y lo pasa a STAGE en un solo paso
+git rm archivo1.txt
+# Renombra el archivo y lo pasa a STAGE en un solo paso
+git mv archivo1.txt nuevoNombre.txt
+
+# Sacar algún cambio que este en STAGE
+git restore --staged archivo1.txt
+# Ya que lo saque de STAGE, si lo quiero recuperar (DESBORRAR)
+git restore archivo.txt
+
+# Ignorar archivos para que no suban al repositorio de git
+# Se hace creando el archivo .gitignore y ahí se colocan los archivos y carpetas a ignorar
+# Por ejemplo el archivo (.env) para variables de entorno
+# Finalmente se agrega y se comitea 
+git add .gitignore
+git commit -m "Agregando archivo gitignore"
+
+# Estatus del git
+git status
+git status -s 
+
+# Diferencia entre dos archivos (nuevos cambios) antes de STAGE
+git diff 
+# Cambios en STAGE
+git diff --staged
+
+# Historial del repositorio
+# Usar la barra de espacio para navegar en la pantalla
+git log
+# Historial simplificado
+git log --oneline
+# Historial simplificado con un poco más de información que el --oneline
+git reflog
+# ==================================================================
+# RAMAS DE GIT
+
+# Verificar en la rama que estamos trabajando
+git branch
+
+# Crear una rama nueva
+git checkout -b nombreRamaNueva
+
+# Cambiarse de la rama actual a otra rama que ya existe
+git chekout nombreRamaDondeQuieroTrabajar
+
+# Traer los cambios de una rama a la rama principal (master)
+# IMPORTANTE: tenemos que estar en la rama master (o la rama que recibe los cambios)
+git merge nombreRamaAlternativa
+# ==================================================================
+# git + gitHub
+
+# Después de crear el repositorio de gitHub
+git remote add origin https://github.com/jehansel/miweb.git
+git remote add origin https://github.com/jehansel-Cursos/php.git
+# Subir los cambios a la rama del repositorio
+# -u crea la rama en el repositorio
+git push -u origin master
+# Puede que te pida nombre de usuario y contraseña
+Username for https://github.com: jehansel
+# En gitHub dar click en:
+# foto
+# Settings
+# Developer settings
+# Peronal access tokens
+# Generate new token
+# Llenar la note, expiration (30 days) y seleccionar casilla de repo
+# Generate token
+# Copiar el token y ese es el password
+Password for https://jehansel@github.com: 
+
+# Subir al repositorio el contenido de la rama alternativa 
+git push -u origin nuevaRama
